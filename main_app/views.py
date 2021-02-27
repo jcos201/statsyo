@@ -11,26 +11,39 @@ def stats(request):
     query = search['queryResults']
     row = query['row']
 
-    rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='121'")
-    teamRoster = rosterData.json()
-    roster = teamRoster['roster_40']
-    rosterResults = roster['queryResults']
+    
 
     
     return render(request, 'stats.html', {
         'name': row['name_display_first_last'],
         'position': row['position'],
         'team': row['team_full'],
-        'players': rosterResults['row']
+        # 'players': rosterResults['row']
 
     })
 
 def teams(request):
-    teamData = requests.get("http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2020'")
-    team = teamData.json()
+    teamsData = requests.get("http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2020'")
+    team = teamsData.json()
     all_season = team['team_all_season']
     results = all_season['queryResults']
 
     return render(request, 'teams/index.html', {
         'teams': results['row']
+    })
+
+
+def roster(request, team_id):
+    # teamsData = requests.get("http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2020'")
+    # team = teamsData.json()
+    # all_season = team['team_all_season']
+    # results = all_season['queryResults']
+    
+    rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='158'")
+    teamRoster = rosterData.json()
+    roster = teamRoster['roster_40']
+    rosterResults = roster['queryResults']
+
+    return render(request, 'teams/detail.html', {
+        'players': rosterResults['row']
     })
