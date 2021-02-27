@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<h1>This is the stats page</h1>
+<h1>Player Information Page for {{ name }}</h1>
 <hr>
 <!-- SANDBOX FOR API ONLY -->
-<p>site content</p>
+
+<p>Team: {{ team }}</p>
+<p>Position: {{ position }}</p>
+
+<h2>Teams Test</h2>
+<p>Team Phone Number: {{ teamPh }}</p>
+
 {% endblock %}
