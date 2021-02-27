@@ -5,4 +5,9 @@
 <!-- ADD ALL MLB LOGOS FOR EACH TEAM-->
 <!-- DOESN'T HAVE TO BE LOGGED IN TO VIEW THIS PAGE -->
 
+<h2>Teams Test</h2>
+{% for team in teams %}
+<img class="logo" src='../static/images/{{ team.name_abbrev }}.png' >
+{% endfor %}
+
 {% endblock %}

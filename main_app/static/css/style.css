@@ -16,3 +16,8 @@ body {
   h1 {
     display: flex;
   }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
