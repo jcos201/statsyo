@@ -5,9 +5,11 @@
 <!-- ADD ALL MLB LOGOS FOR EACH TEAM-->
 <!-- DOESN'T HAVE TO BE LOGGED IN TO VIEW THIS PAGE -->
 
-<h2>Teams Test</h2>
+<h2>All Teams</h2>
 {% for team in teams %}
-<img class="logo" src='../static/images/{{ team.name_abbrev }}.png' >
+<a href='../teams/roster/{{ team.team_id }}'>
+    <img alt="{{ team.name_abbrev }}" class="logo" src='../static/images/{{ team.name_abbrev }}.png'>
+</a>
 {% endfor %}
 
 {% endblock %}

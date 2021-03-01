@@ -39,11 +39,13 @@ def roster(request, team_id):
     # all_season = team['team_all_season']
     # results = all_season['queryResults']
     
-    rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='158'")
+    rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='{}'".format(team_id))
     teamRoster = rosterData.json()
     roster = teamRoster['roster_40']
     rosterResults = roster['queryResults']
+    
 
     return render(request, 'teams/detail.html', {
-        'players': rosterResults['row']
+        'players': rosterResults['row'],
+
     })
