@@ -54,5 +54,16 @@ def roster(request, team_id):
 
     })
 
-def first(request):
-    pass
+
+# Everything under this line is Stuart's new code:
+def playerStats(request, player_id):
+    playerData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
+    hittingResults = playerData.json()
+    hitting = hittingResults['sport_hitting_tm']
+    results = hitting['queryResults']
+
+
+    return render(request, 'players/detail.html', {
+        'stats': results['row'],
+        
+    })
