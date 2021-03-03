@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <!-- ADD ALL MLB LOGOS FOR EACH TEAM-->
@@ -8,7 +10,8 @@
 <h2>All Teams</h2>
 {% for team in teams %}
 <a href='../teams/roster/{{ team.team_id }}'>
-    <img alt="{{ team.name_abbrev }}" class="logo" src="static '../images/ARI.png">
+    
+    <img alt="{{ team.name_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ team.name_abbrev }}.png">
 </a>
 {% endfor %}
 
