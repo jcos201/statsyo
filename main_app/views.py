@@ -54,5 +54,4 @@ def roster(request, team_id):
 
     })
 
-def first(request):
-    pass
+
