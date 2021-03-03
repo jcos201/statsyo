@@ -124,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/main_app/static/'
+
+LOGIN_REDIRECT_URL = '/teams/'
+
+LOGOUT_REDIRECT_URL = '/'

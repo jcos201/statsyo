@@ -1,5 +1,32 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+
 import requests
+
+# Imports for creating User Signup Page
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+# Imports login_required decorator for custom defined views
+from django.contrib.auth.decorators import login_required
+
+# Imports LoginRequiredMixin for class based views
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+def signup(request):
+    error_message=''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            return redirect('index')
+        else:
+            error_message = 'The data you have entered is invalide, please try again.'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
 
 def home(request):
     return render(request, 'home.html')
@@ -54,5 +81,14 @@ def roster(request, team_id):
 
     })
 
-def first(request):
-    pass
+# Everything under this line is Stuart’s new code:
+def playerStats(request, player_id):
+    playerData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
+    hittingResults = playerData.json()
+    hitting = hittingResults['sport_hitting_tm']
+    results = hitting['queryResults']
+    return render(request, 'players/detail.html', {
+        'stats': results['row'],
+    })
+
+##### Authorization 

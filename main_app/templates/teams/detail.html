@@ -13,5 +13,11 @@
 {% for player in players %}
 <p>{{ player.name_display_first_last }}</p>
 <p>{{ player.position_txt }}</p>
+
+<!-- Everything below this line (besides the endfor and endblock) is Stuart’s new code -->
+<a href='{% url "playerStats" player.player_id %}'>
+    <p>{{ player.name_display_first_last }}</p>
+</a>
+
 {% endfor %}
 {% endblock %}
