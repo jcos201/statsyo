@@ -56,7 +56,8 @@ def teams(request):
     results = all_season['queryResults']
 
     return render(request, 'teams/index.html', {
-        'teams': results['row']
+        'teams': results['row'],
+        
     })
 
 
