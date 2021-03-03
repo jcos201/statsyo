@@ -11,18 +11,20 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>MLB Test</title>
+    <title>Stats Yo!</title>
 </head>
-<body id="bg" style="background-image: url('{% static "images/MLB.png" %}');">
+<body>
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper blue darken-4">
                 <ul>
                     <li>
-                        <img src="../static/images/statsyoLOGO.png" alt="Stats Yo!" width="75" height="75">
-                        <a href="{% url 'home' %}" class="left brand-logo">Stats Yo!</a>
+                        <a href="{% url 'home' %}" class="left brand-logo">
+                            <img src="../static/images/statsyoLOGO.png" alt="Stats Yo!" width="66" height="66">
+                        </a>
                     </li>
                 </ul>
                 <ul class="right">
@@ -39,7 +41,7 @@
         {% endblock %}
     </main>
     <footer class="page-footer red">
-        <div class="center blue-text">All Rights Reserved &copy; 2021 Stats Yo!</div>
+        <div class="center text-white">All Rights Reserved &copy; 2021 Stats Yo!</div>
     </footer>
 </body>
 </html>
