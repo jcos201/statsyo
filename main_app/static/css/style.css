@@ -13,11 +13,13 @@ body {
     text-align: right;
   }
 
-  h1 {
+  h2 {
     display: flex;
+
   }
 
   .logo {
     height: 50px;
     width: 50px;
-  }
+    
+  } 
