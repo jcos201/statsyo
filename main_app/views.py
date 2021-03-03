@@ -43,9 +43,13 @@ def roster(request, team_id):
     teamRoster = rosterData.json()
     roster = teamRoster['roster_40']
     rosterResults = roster['queryResults']
+    row = rosterResults['row']
+    
+
     
 
     return render(request, 'teams/detail.html', {
         'players': rosterResults['row'],
+        'team': row[0]['team_name']
 
     })
