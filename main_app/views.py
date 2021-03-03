@@ -53,3 +53,4 @@ def roster(request, team_id):
         'team': row[0]['team_name']
 
     })
+
