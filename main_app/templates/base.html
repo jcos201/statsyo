@@ -6,17 +6,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>MLB Test</title>
 </head>
-<body>
+<body id="bg" style="background-image: url('{% static "images/MLB.png" %}');">
     <header class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper blue darken-4">
                 <ul>
                     <li>
+                        <img src="../static/images/statsyoLOGO.png" alt="Stats Yo!" width="75" height="75">
                         <a href="{% url 'home' %}" class="left brand-logo">Stats Yo!</a>
                     </li>
                 </ul>
@@ -33,8 +38,8 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
-        <div class="right black-text">All Rights Reserved &copy; 2021 Stats Yo!</div>
+    <footer class="page-footer red">
+        <div class="center blue-text">All Rights Reserved &copy; 2021 Stats Yo!</div>
     </footer>
 </body>
 </html>
