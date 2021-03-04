@@ -13,9 +13,7 @@
 <h4>Pitchers</h4>
 {% for player in players %}
     {% if player.position_txt == "P" %}
-        <a href='{% url "playerStats" player.player_id %}'>
             <p>{{ player.name_display_first_last }}</p>
-        </a>
     {% endif %}
     {% endfor %}
 
