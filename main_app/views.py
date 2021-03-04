@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 
 import requests
+
 
 # Imports for creating User Signup Page
 from django.contrib.auth import login
@@ -13,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 
 # Imports LoginRequiredMixin for class based views
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .models import Fav_List, Fav_Player, Fav_Team
 
 def signup(request):
     error_message=''
@@ -49,7 +52,7 @@ def stats(request):
 
     })
 
-def teams(request):
+def teams_index(request):
     teamsData = requests.get("http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2020'")
     team = teamsData.json()
     all_season = team['team_all_season']
@@ -93,3 +96,11 @@ def playerStats(request, player_id):
     })
 
 ##### Authorization 
+
+class FavlistCreate(LoginRequiredMixin, CreateView):
+    model = Fav_List
+    fields = ['__all__']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
