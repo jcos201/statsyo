@@ -22,4 +22,6 @@ class Fav_Player(models.Model):
 class Fav_List(models.Model):
     name = models.CharField(max_length=100)
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     fav_players = models.ManyToManyField(Fav_Player)

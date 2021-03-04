@@ -105,8 +105,20 @@ def playerStats(request, player_id):
 
 class FavlistCreate(LoginRequiredMixin, CreateView):
     model = Fav_List
-    fields = ['__all__']
+    fields = ['name']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    success_url = '/fav_lists'
+
+class FavlistUpdate(LoginRequiredMixin, UpdateView):
+    model = Fav_List
+
+class FavlistDelete(LoginRequiredMixin, DeleteView):
+    model = Fav_List
+
+def favlist_List(request):
+    list = Fav_List.objects.filter(user=request.user)
+    return render(request, 'main_app/fav_list_list.html', { 'list': list })
