@@ -93,11 +93,13 @@ def playerStats(request, player_id):
     hitting = hittingResults['sport_hitting_tm']
     results = hitting['queryResults']
 
-
     return render(request, 'players/detail.html', {
-        'stats': results['row'],
+        'stats': results['row']
         
     })
+
+
+
 
 ##### Authorization 
 
