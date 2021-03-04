@@ -10,15 +10,23 @@
     <!-- IF NOT LOGGED IN REDIRECT LOGIN PAGE -->
 <h2>40-Man Roster for the {{ team }} </h2>
 
+<h4>Pitchers</h4>
 {% for player in players %}
-<p>{{ player.name_display_first_last }}</p>
-<p>{{ player.position_txt }}</p>
+    {% if player.position_txt == "P" %}
+        <a href='{% url "playerStats" player.player_id %}'>
+            <p>{{ player.name_display_first_last }}</p>
+        </a>
+    {% endif %}
+    {% endfor %}
 
-<!-- Everything below this line (besides the endfor and endblock) is Stuart's new code -->
+{% else %}
+    <h4>Batters</h4>
+    {% for player in players %}
+    <a href='{% url "playerStats" player.player_id %}'>
+        <p>{{ player.name_display_first_last }}</p>
+    </a>
+        <p>{{ player.position_txt }}</p>
+    {% endfor %}
 
-<a href='{% url "playerStats" player.player_id %}'>
-    <p>{{ player.name_display_first_last }}</p>
-</a>
 
-{% endfor %}
 {% endblock %}
