@@ -12,9 +12,9 @@
 
 {% for player in players %}
     {% if player.position_txt == "P" %}
-    <!-- <a href='{% url "playerStats" player.player_id %}'> -->
+    <a href='{% url "pitcherStats" player.player_id %}'>
         <p>{{ player.name_display_first_last }}</p>
-    <!-- </a> -->
+    </a>
         <p>{{ player.position_txt }}</p>
             
     {% else %}

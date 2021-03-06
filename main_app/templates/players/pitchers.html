@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Player Stats for {{ name }}</h2>
+<p>{{ pitcherData }}</p>>
+
+<p>Wins: {{ pitcherStats.w }}</p>
+<p>Losses: {{ pitcherStats.l }}</p>
+<p>ERA: {{ pitcherStats.era }}</p>
+<p>Games: {{ pitcherStats.g }}</p>
+<p>Games Started: {{ pitcherStats.gs }}</p>
+<p>Complete Games: {{ pitcherStats.cg }}</p>
+<p>Shutouts: {{ pitcherStats.so }}</p>
+<p>Saves: {{ pitcherStats.sv }}</p>
+<p>Save Opportunities: {{ pitcherStats.so }}</p>
+<p>Innings Pitched: {{ pitcherStats.ip }}</p>
+<p>Hits: {{ pitcherStats.h }}</p>
+<p>Runs: {{ pitcherStats.r }}</p>
+<p>Earned Runs: {{ pitcherStats.er }}</p>
+<p>Home Runs: {{ pitcherStats.hr }}</p>
+<p>Hit Batsmen: {{ pitcherStats.hb }}</p>
+<p>Walks: {{ pitcherStats.w }}</p>
+<p>Strikeouts: {{ pitcherStats.so }}</p>
+<p>WHIP: {{ pitcherStats.whip }}</p>
+<p>AVG: {{ pitcherStats.avg }}</p>
+
+{% endblock %}
