@@ -80,8 +80,14 @@ def playerStats(request, player_id):
     hitting = hittingResults['sport_hitting_tm']
     results = hitting['queryResults']
 
+    playerInfo = requests.get("http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='{}'".format(player_id))
+    nameLookup = playerInfo.json()
+    info = nameLookup['player_info']
+    infoResults = info['queryResults']
+
     return render(request, 'players/detail.html', {
-        'stats': results['row']
+        'stats': results['row'],
+        'playerDetails': infoResults['row']
         
     })
 
@@ -91,8 +97,14 @@ def pitcherStats(request, player_id):
     pitching = pitchingResults['sport_pitching_tm']
     pitchResults = pitching['queryResults']
 
+    playerInfo = requests.get("http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='{}'".format(player_id))
+    nameLookup = playerInfo.json()
+    info = nameLookup['player_info']
+    infoResults = info['queryResults']
+
     return render(request, 'players/pitchers.html', {
-        'pitcherStats': pitchResults['row']
+        'pitcherStats': pitchResults['row'],
+        'playerDetails': infoResults['row']
     })
 
 
