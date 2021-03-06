@@ -91,7 +91,7 @@ def pitcherStats(request, player_id):
     pitching = pitchingResults['sport_pitching_tm']
     pitchResults = pitching['queryResults']
 
-    return render(request, 'players/detail.html', {
+    return render(request, 'players/pitchers.html', {
         'pitcherStats': pitchResults['row']
     })
 
