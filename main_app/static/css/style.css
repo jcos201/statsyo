@@ -6,6 +6,9 @@ body {
     color: #0D47A1;
   }
   
+  nav ul a {
+    font-size: 0.8rem !important;
+  }
   main {
     flex: 1 0 auto;
     

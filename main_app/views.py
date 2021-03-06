@@ -70,7 +70,8 @@ def roster(request, team_id):
     
     return render(request, 'teams/detail.html', {
         'players': rosterResults['row'],
-        'team': row[0]['team_name']
+        'team': row[0]['team_name'],
+        'team_logo': row[0]['team_abbrev']
     })
 
 

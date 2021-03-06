@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -8,22 +9,46 @@
 <!-- IF LOGGED IN USER CAN ADD PLAYER TO FAVORITES LIST -->
     <!-- IF LOGGED IN USER CAN CLICK ON PLAYER AND GO TO PLAYERS PAGE -->
     <!-- IF NOT LOGGED IN REDIRECT LOGIN PAGE -->
-<h2>40-Man Roster for the {{ team }} </h2>
+<h5 class="center"><img alt="{{ team_logo }}" class="logo" src="{% get_static_prefix %}/images/{{ team_logo }}.png"> 40-Man Roster</h5>
 
-{% for player in players %}
-    {% if player.position_txt == "P" %}
-    <a href='{% url "pitcherStats" player.player_id %}'>
-        <p>{{ player.name_display_first_last }}</p>
-    </a>
-        <p>{{ player.position_txt }}</p>
-            
-    {% else %}
-        <a href='{% url "playerStats" player.player_id %}'>
-            <p>{{ player.name_display_first_last }}</p>
-        </a>
-        <p>{{ player.position_txt }}</p>
-    {% endif %}
-{% endfor %}
+<div class="row">
+    <!-- PITCHERS -->
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Pitchers</span>
+                {% for player in players %}
+                {% if player.position_txt == "P" %}
+                <div class="card">
+                    <a href='{% url "pitcherStats" player.player_id %}'>
+                        {{ player.name_display_first_last }}
+                        
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- HITTERS -->
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Hitters</span>
+                {% for player in players %}
+                    {% if not player.position_txt == "P" %}
+                    <div class="card">
+                        <a href='{% url "playerStats" player.player_id %}'>
+                            {{ player.name_display_first_last }}
+                            {{ player.position_txt }}
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
