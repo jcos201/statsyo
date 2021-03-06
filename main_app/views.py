@@ -60,7 +60,7 @@ def teams_index(request):
         
     })
 
-
+@login_required
 def roster(request, team_id):
     rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='{}'".format(team_id))
     teamRoster = rosterData.json()
