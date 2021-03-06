@@ -25,3 +25,9 @@ class Fav_List(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     fav_players = models.ManyToManyField(Fav_Player)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def get_absolute_url(self):
+        return reverse('favlist_detail', kwargs={'pk': self.id})

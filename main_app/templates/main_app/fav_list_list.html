@@ -4,4 +4,21 @@
 
 <h1>My Lists</h1>
 
+{% for list in lists %}
+<div class="col s12">
+    <div class="card">
+        <div class="card-content">
+            <a href="{% url 'favlist_detail' list.id %}">
+                <div class="card-title">
+                    <p>{{ list.name }}</p>
+                </div>
+            </a>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'favlist_delete' list.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock %}
