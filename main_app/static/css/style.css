@@ -29,8 +29,8 @@ body {
   }
 
   .logo {
-    height: 50px;
-    width: 50px;
+    height: 150px;
+    width: 150px;
   }
 
   .mainlogo {
@@ -45,4 +45,8 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+  }
+
+  img:hover {
+    transform: scaleX(-1);
   }
