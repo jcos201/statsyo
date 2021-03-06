@@ -5,13 +5,17 @@ body {
     font-family: 'Press Start 2P', cursive;
     color: #0D47A1;
   }
-  
+
   nav ul a {
-    font-size: 0.8rem !important;
+    font-size: 10px !important;
   }
+
   main {
     flex: 1 0 auto;
-    
+    }
+
+  #navigation {
+    font-size: 5px !important;
   }
   
   footer.page-footer {

@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content%}
 
-<div>
-<!-- LOGO GOES HERE -->
-<img src="../static/images/statsyoLOGO.png" class="mainlogo" alt="Stats Yo!" width="300" height="300">
-</div>
+    <style>
+        body {
+          background-image: url("{% get_static_prefix %}/images/homeBG.png");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+    </style>
+
 {% endblock %}
