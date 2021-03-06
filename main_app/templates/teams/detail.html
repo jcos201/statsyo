@@ -11,13 +11,19 @@
 <h2>40-Man Roster for the {{ team }} </h2>
 
 {% for player in players %}
-<p>{{ player.name_display_first_last }}</p>
-<p>{{ player.position_txt }}</p>
-
-<!-- Everything below this line (besides the endfor and endblock) is Stuart’s new code -->
-<a href='{% url "playerStats" player.player_id %}'>
-    <p>{{ player.name_display_first_last }}</p>
-</a>
-
+    {% if player.position_txt == "P" %}
+    <a href='{% url "pitcherStats" player.player_id %}'>
+        <p>{{ player.name_display_first_last }}</p>
+    </a>
+        <p>{{ player.position_txt }}</p>
+            
+    {% else %}
+        <a href='{% url "playerStats" player.player_id %}'>
+            <p>{{ player.name_display_first_last }}</p>
+        </a>
+        <p>{{ player.position_txt }}</p>
+    {% endif %}
 {% endfor %}
+
+
 {% endblock %}

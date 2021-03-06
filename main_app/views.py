@@ -41,9 +41,6 @@ def stats(request):
     query = search['queryResults']
     row = query['row']
 
-    
-
-    
     return render(request, 'stats.html', {
         'name': row['name_display_first_last'],
         'position': row['position'],
@@ -63,37 +60,53 @@ def teams_index(request):
         
     })
 
-
+@login_required
 def roster(request, team_id):
-    # teamsData = requests.get("http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2020'")
-    # team = teamsData.json()
-    # all_season = team['team_all_season']
-    # results = all_season['queryResults']
-    
     rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='{}'".format(team_id))
     teamRoster = rosterData.json()
     roster = teamRoster['roster_40']
     rosterResults = roster['queryResults']
     row = rosterResults['row']
     
-
-    
-
     return render(request, 'teams/detail.html', {
         'players': rosterResults['row'],
         'team': row[0]['team_name']
-
     })
 
-# Everything under this line is Stuart’s new code:
+
 def playerStats(request, player_id):
     playerData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
     hittingResults = playerData.json()
     hitting = hittingResults['sport_hitting_tm']
     results = hitting['queryResults']
+
+    playerInfo = requests.get("http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='{}'".format(player_id))
+    nameLookup = playerInfo.json()
+    info = nameLookup['player_info']
+    infoResults = info['queryResults']
+
     return render(request, 'players/detail.html', {
         'stats': results['row'],
+        'playerDetails': infoResults['row']
+        
     })
+
+def pitcherStats(request, player_id):
+    pitcherData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
+    pitchingResults = pitcherData.json()
+    pitching = pitchingResults['sport_pitching_tm']
+    pitchResults = pitching['queryResults']
+
+    playerInfo = requests.get("http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='{}'".format(player_id))
+    nameLookup = playerInfo.json()
+    info = nameLookup['player_info']
+    infoResults = info['queryResults']
+
+    return render(request, 'players/pitchers.html', {
+        'pitcherStats': pitchResults['row'],
+        'playerDetails': infoResults['row']
+    })
+
 
 ##### Authorization 
 
