@@ -86,11 +86,15 @@ def playerStats(request, player_id):
     info = nameLookup['player_info']
     infoResults = info['queryResults']
 
-    return render(request, 'players/detail.html', {
-        'stats': results['row'],
-        'playerDetails': infoResults['row']
-        
-    })
+    if 'row' in results:
+        return render(request, 'players/detail.html', {
+            'stats': results['row'],
+            'playerDetails': infoResults['row']
+        })
+    else:
+        return render(request, 'players/detail.html', {
+            'playerDetails': infoResults['row']
+        })
 
 def pitcherStats(request, player_id):
     pitcherData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
@@ -103,10 +107,15 @@ def pitcherStats(request, player_id):
     info = nameLookup['player_info']
     infoResults = info['queryResults']
 
-    return render(request, 'players/pitchers.html', {
-        'pitcherStats': pitchResults['row'],
-        'playerDetails': infoResults['row']
-    })
+    if 'row' in pitchResults:
+        return render(request, 'players/detail.html', {
+            'pitcherStats': pitchResults['row'],
+            'playerDetails': infoResults['row']
+        })
+    else:
+        return render(request, 'players/detail.html', {
+            'playerDetails': infoResults['row']
+        })
 
 
 ##### Authorization 
