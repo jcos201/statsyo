@@ -126,8 +126,4 @@ class ListDetail(LoginRequiredMixin, DetailView):
 
 def favlist_List(request):
     list = Fav_List.objects.filter(user=request.user)
-<<<<<<< HEAD
-    return render(request, 'main_app/fav_list_list.html', { 'list': list })
-=======
     return render(request, 'main_app/fav_list_list.html', { 'lists': list })
->>>>>>> 433ad561c43272aeb6578d9c82bfd6c53b989db5
