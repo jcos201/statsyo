@@ -132,6 +132,13 @@ class ListDelete(LoginRequiredMixin, DeleteView):
 class ListDetail(LoginRequiredMixin, DetailView):
     model = Fav_List
 
+@login_required
 def favlist_List(request):
     list = Fav_List.objects.filter(user=request.user)
     return render(request, 'main_app/fav_list_list.html', { 'lists': list })
+
+
+@login_required
+def add_player(request, list_id, player_id):
+    Fav_List.objects.get(id=list_id).fav_players.add(player_id)
+    return render(request, '')
