@@ -108,12 +108,12 @@ def pitcherStats(request, player_id):
     infoResults = info['queryResults']
 
     if 'row' in pitchResults:
-        return render(request, 'players/detail.html', {
+        return render(request, 'players/pitchers.html', {
             'pitcherStats': pitchResults['row'],
             'playerDetails': infoResults['row']
         })
     else:
-        return render(request, 'players/detail.html', {
+        return render(request, 'players/pitchers.html', {
             'playerDetails': infoResults['row']
         })
 
