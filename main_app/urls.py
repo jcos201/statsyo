@@ -15,6 +15,12 @@ urlpatterns = [
     path('fav_lists/<int:list_id>/add_player/<int:player_id>', views.add_player, name='add_player'),
     path('players/<int:player_id>/', views.playerStats, name='playerStats'),
     path('players/pitchers/<int:player_id>/', views.pitcherStats, name='pitcherStats'),
+
+    # batting leaders
+    path('players/battingLeaders/<int:year>/', views.battingLeaders, name='battingLeaders'),
+
+    # pitching leaders
+    path('players/pitchingLeaders/<int:year>/', views.pitchingLeaders, name='pitchingLeaders'),
     
     # User signup URL
     path('accounts/signup/', views.signup, name='signup')

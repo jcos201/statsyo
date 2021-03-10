@@ -117,6 +117,25 @@ def pitcherStats(request, player_id):
             'playerDetails': infoResults['row']
         })
 
+def battingLeaders(request, year):
+    bLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=10&game_type=%27R%27&season='{}'&sort_column=%27hr%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev".format(year))
+    bLeaderResults = bLeaderData.json()
+    hitting_repeater = bLeaderResults['leader_hitting_repeater']
+
+    return render(request, 'players/battingLeaders.html', {
+        'hrLeaders': hitting_repeater['leader_hitting_mux'],
+        'year':year
+    })
+
+def pitchingLeaders(request, year):
+    pLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='era'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev".format(year))
+    pLeaderResults = pLeaderData.json()
+    pitching_repeater = pLeaderResults['leader_pitching_repeater']
+
+    return render(request, 'players/pitchingLeaders.html', {
+        'eraLeaders': pitching_repeater['leader_pitching_mux'],
+        'year':year
+    })
 
 ##### Authorization 
 

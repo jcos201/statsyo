@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var yearElems = document.querySelectorAll('.dropdown-trigger');
+      var yearInstance = M.Dropdown.init(yearElems);
+    });
+</script>
+
+<!-- Year Dropdown Trigger -->
+<a class='dropdown-trigger btn' href='#' data-target='yearDropdown'>Stats Year</a>
+
+<!-- Year Dropdown Structure -->
+<ul id='yearDropdown' class='dropdown-content'>
+    <li><a href='{% url "battingLeaders" "2020" %}'>2020</a></li>
+    <li><a href='{% url "battingLeaders" "2019" %}'>2019</a></li>
+    <li><a href='{% url "battingLeaders" "2018" %}'>2018</a></li>
+    <li><a href='{% url "battingLeaders" "2017" %}'>2017</a></li>
+    <li><a href='{% url "battingLeaders" "2016" %}'>2016</a></li> 
+</ul>
+
+
+<h4>Batting Leaders for {{ year }}</h4>
+<table>
+    <tr>
+        <th>HR</th>
+        <th>Player</th>
+        <th>Team</th>
+    </tr>
+    
+    {% for leader in hrLeaders.queryResults.row %}
+    
+    <tr>
+        <td>{{ leader.hr }}</td>
+        <td>{{ leader.name_display_first_last }}</td>
+        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+    </tr>
+    
+    {% endfor %}
+</table>
+    
+{% endblock %}
