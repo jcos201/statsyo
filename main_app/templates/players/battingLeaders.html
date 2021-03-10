@@ -24,6 +24,7 @@
 
 
 <h4>Batting Leaders for {{ year }}</h4>
+
 <table>
     <tr>
         <th>HR</th>
@@ -31,11 +32,38 @@
         <th>Team</th>
     </tr>
     
-    {% for leader in hrLeaders.queryResults.row %}
+    {% for leader in bLeaders.queryResults.row %}
     
     <tr>
         <td>{{ leader.hr }}</td>
-        <td>{{ leader.name_display_first_last }}</td>
+        <td>
+            <a href='{% url "playerStats" leader.player_id %}'>
+                <p>{{ leader.name_display_first_last }}</p>
+            </a>
+        </td>
+
+        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+    </tr>
+    
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>RBI</th>
+        <th>Player</th>
+        <th>Team</th>
+    </tr>
+    
+    {% for leader in bLeaders.queryResults.row %}
+    
+    <tr>
+        <td>{{ leader.rbi }}</td>
+        <td>
+            <a href='{% url "playerStats" leader.player_id %}'>
+                <p>{{ leader.name_display_first_last }}</p>
+            </a>
+        </td>
         <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
     </tr>
     
