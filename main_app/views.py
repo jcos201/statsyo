@@ -128,7 +128,7 @@ def battingLeaders(request, year):
     })
 
 def pitchingLeaders(request, year):
-    pLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=5&game_type='R'&season='{}'&sort_column='era'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev".format(year))
+    pLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='era'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev".format(year))
     pLeaderResults = pLeaderData.json()
     pitching_repeater = pLeaderResults['leader_pitching_repeater']
 
