@@ -178,5 +178,5 @@ def add_player(request, list_id, player_id):
 
     Fav_Player.objects.create(player_id=player_id, fav_list_id=list_id, pos=position, team=team, name=name)
     lists = Fav_List.objects.filter(user=request.user)
-    return render(request, 'main_app/fav_list_list.html', { 'lists': lists })
+    return redirect('favlist_detail', pk = list_id)
     
