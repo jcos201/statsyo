@@ -11,7 +11,7 @@
 </script>
 
 <!-- Year Dropdown Trigger -->
-<a class='dropdown-trigger btn' href='#' data-target='yearDropdown'>Stats Year</a>
+<a class='dropdown-trigger btn red' href='#' data-target='yearDropdown'>Stats Year</a>
 
 <!-- Year Dropdown Structure -->
 <ul id='yearDropdown' class='dropdown-content'>
@@ -24,50 +24,64 @@
 
 
 <h4>Batting Leaders for {{ year }}</h4>
+<div class="row">
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <th>HR</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+    
+                    {% for leader in bLeaders.queryResults.row %}
+    
+                    <tr>
+                        <td>{{ leader.hr }}</td>
+                        <td>
+                            <a href='{% url "playerStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
 
-<table>
-    <tr>
-        <th>HR</th>
-        <th>Player</th>
-        <th>Team</th>
-    </tr>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
     
-    {% for leader in bLeaders.queryResults.row %}
-    
-    <tr>
-        <td>{{ leader.hr }}</td>
-        <td>
-            <a href='{% url "playerStats" leader.player_id %}'>
-                <p>{{ leader.name_display_first_last }}</p>
-            </a>
-        </td>
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div> 
 
-        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
-    </tr>
-    
-    {% endfor %}
-</table>
 
-<table>
-    <tr>
-        <th>RBI</th>
-        <th>Player</th>
-        <th>Team</th>
-    </tr>
+
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <th>RBI</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
     
-    {% for leader in bLeaders.queryResults.row %}
+                    {% for leader in bLeaders.queryResults.row %}
     
-    <tr>
-        <td>{{ leader.rbi }}</td>
-        <td>
-            <a href='{% url "playerStats" leader.player_id %}'>
-                <p>{{ leader.name_display_first_last }}</p>
-            </a>
-        </td>
-        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
-    </tr>
+                    <tr>
+                        <td>{{ leader.rbi }}</td>
+                        <td>
+                            <a href='{% url "playerStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
     
-    {% endfor %}
-</table>
-    
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div> 
+</div>        
 {% endblock %}
