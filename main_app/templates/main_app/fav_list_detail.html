@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h1>Favorite List Detail</h1>
+<h5>Favorite List Detail</h5>
 
 <div class="col s12">
     <div class="card">
         <div class="card-content">
             {{ object.name }}
+           <!-- {{ object.fav_player_set.all }}-->
+            {% if object.fav_player_set.all.count %}
+                {% for player in object.fav_player_set.all %}
+                <div class="card">
+                    <div class="card-content">
+
+                        {{ player.name }}
+                        {{ player.pos }}
+                        <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
+                        {{ player.team }}
+                    </div>
+                    <div class="card-action">
+                        <a href="">Delete</a>
+
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

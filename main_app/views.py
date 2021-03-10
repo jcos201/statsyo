@@ -154,7 +154,6 @@ class ListUpdate(LoginRequiredMixin, UpdateView):
 
 class ListDelete(LoginRequiredMixin, DeleteView):
     model = Fav_List
-
     success_url = '/fav_lists/'
 
 class ListDetail(LoginRequiredMixin, DetailView):
@@ -162,11 +161,22 @@ class ListDetail(LoginRequiredMixin, DetailView):
 
 @login_required
 def favlist_List(request):
-    list = Fav_List.objects.filter(user=request.user)
-    return render(request, 'main_app/fav_list_list.html', { 'lists': list })
+    lists = Fav_List.objects.filter(user=request.user)
+    return render(request, 'main_app/fav_list_list.html', { 'lists': lists })
 
 
 @login_required
 def add_player(request, list_id, player_id):
-    Fav_List.objects.get(id=list_id).fav_players.add(player_id)
-    return render(request, '')
+    playerInfo = requests.get("http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='{}'".format(player_id))
+    nameLookup = playerInfo.json()
+    info = nameLookup['player_info']
+    infoResults = info['queryResults']
+    details = infoResults['row']
+    position = details['primary_position_txt']
+    team = details['team_abbrev']
+    name = details['name_display_first_last']
+
+    Fav_Player.objects.create(player_id=player_id, fav_list_id=list_id, pos=position, team=team, name=name)
+    lists = Fav_List.objects.filter(user=request.user)
+    return render(request, 'main_app/fav_list_list.html', { 'lists': lists })
+    
