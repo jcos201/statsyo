@@ -9,7 +9,7 @@
 <!-- IF LOGGED IN USER CAN ADD PLAYER TO FAVORITES LIST -->
     <!-- IF LOGGED IN USER CAN CLICK ON PLAYER AND GO TO PLAYERS PAGE -->
     <!-- IF NOT LOGGED IN REDIRECT LOGIN PAGE -->
-<h5 class="center"><img alt="{{ team_logo }}" class="logo" src="{% get_static_prefix %}/images/{{ team_logo }}.png"> 40-Man Roster</h5>
+<h4 class="center"><img alt="{{ team_logo }}" class="logo" src="{% get_static_prefix %}/images/{{ team_logo }}.png"> 40-Man Roster</h4>
 
 <div class="row">
     <!-- PITCHERS -->
@@ -19,13 +19,13 @@
                 <span class="card-title">Pitchers</span>
                 {% for player in players %}
                 {% if player.position_txt == "P" %}
-                <div class="card">
+                <div class="card" id="pitcher-card">
                     <a href='{% url "pitcherStats" player.player_id %}'>
                         {{ player.name_display_first_last }}
                     </a>
                     <span class="right">
                         <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
-                            <i class="small material-icons">star</i>
+                            <i class="small material-icons" id="person_add">person_add</i>
                         </a>
                     </span>
                 </div>
@@ -41,7 +41,7 @@
                 <span class="card-title">Hitters</span>
                 {% for player in players %}
                     {% if not player.position_txt == "P" %}
-                    <div class="card">
+                    <div class="card" id="hitter-card">
                         <a href='{% url "playerStats" player.player_id %}'>
                             {{ player.name_display_first_last }}
                             {{ player.position_txt }}

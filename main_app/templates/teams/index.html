@@ -7,12 +7,12 @@
 <!-- ADD ALL MLB LOGOS FOR EACH TEAM-->
 <!-- DOESN'T HAVE TO BE LOGGED IN TO VIEW THIS PAGE -->
 
-<h2>All Teams</h2>
+<h4>All Teams</h4>
 {% for team in teams %}
 
 <a href='../teams/roster/{{ team.team_id }}'>
     
-    <img alt="{{ team.name_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ team.name_abbrev }}.png">
+    <img alt="{{ team.name_abbrev }}" id="team-logo-index" src="{% get_static_prefix %}/images/{{ team.name_abbrev }}.png">
 </a>
 {% endfor %}
 

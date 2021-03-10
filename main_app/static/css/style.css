@@ -14,6 +14,11 @@ body {
     flex: 1 0 auto;
     }
 
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
   #navigation {
     font-size: 5px !important;
   }
@@ -25,20 +30,15 @@ body {
 
   h2 {
     display: flex;
-
   }
 
-  .logo {
+  #team-logo-index {
     height: 150px;
     width: 150px;
   }
 
-  .mainlogo {
-    display: block;
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
+  #team-logo-index:hover {
+    transform: scaleX(-1);
   }
 
   .bg {
@@ -47,6 +47,39 @@ body {
     background-position: center;
   }
 
-  img:hover {
-    transform: scaleX(-1);
+
+  #header-logo {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
+
+  #pitcher-card {
+    height: 35px;
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  #hitter-card {
+    height: 35px;
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  #person_add {
+    padding-right: 20px;
+    padding-bottom: 5px;
+  }
+
+
+  #batter-stats {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    column-gap: auto;
+    row-gap: auto;
+
+  }
+
+
+
+
