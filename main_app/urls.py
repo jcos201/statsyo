@@ -20,6 +20,7 @@ urlpatterns = [
     path('players/battingLeaders/<int:year>/', views.battingLeaders, name='battingLeaders'),
 
     # pitching leaders
+    path('players/pitchingLeaders/<int:year>/', views.pitchingLeaders, name='pitchingLeaders'),
     
     # User signup URL
     path('accounts/signup/', views.signup, name='signup')

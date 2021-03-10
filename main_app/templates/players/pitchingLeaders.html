@@ -15,26 +15,26 @@
 
 <!-- Year Dropdown Structure -->
 <ul id='yearDropdown' class='dropdown-content'>
-    <li><a href='{% url "battingLeaders" "2020" %}'>2020</a></li>
-    <li><a href='{% url "battingLeaders" "2019" %}'>2019</a></li>
-    <li><a href='{% url "battingLeaders" "2018" %}'>2018</a></li>
-    <li><a href='{% url "battingLeaders" "2017" %}'>2017</a></li>
-    <li><a href='{% url "battingLeaders" "2016" %}'>2016</a></li> 
+    <li><a href='{% url "pitchingLeaders" "2020" %}'>2020</a></li>
+    <li><a href='{% url "pitchingLeaders" "2019" %}'>2019</a></li>
+    <li><a href='{% url "pitchingLeaders" "2018" %}'>2018</a></li>
+    <li><a href='{% url "pitchingLeaders" "2017" %}'>2017</a></li>
+    <li><a href='{% url "pitchingLeaders" "2016" %}'>2016</a></li> 
 </ul>
 
 
-<h4>Batting Leaders for {{ year }}</h4>
+<h4>Pitching Leaders for {{ year }}</h4>
 <table>
     <tr>
-        <th>HR</th>
+        <th>ERA</th>
         <th>Player</th>
         <th>Team</th>
     </tr>
     
-    {% for leader in hrLeaders.queryResults.row %}
+    {% for leader in eraLeaders.queryResults.row %}
     
     <tr>
-        <td>{{ leader.hr }}</td>
+        <td>{{ leader.era }}</td>
         <td>{{ leader.name_display_first_last }}</td>
         <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
     </tr>

@@ -37,6 +37,7 @@
                     <li><a href="{% url 'favlist_create' %}">Add A Favorite Lists</a></li>
                     {% endif %}
                     <li><a href="{% url 'battingLeaders' '2020' %}">Batting Leaders</a></li>
+                    <li><a href="{% url 'pitchingLeaders' '2020' %}">Pitching Leaders</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Signup</a></li>
