@@ -11,7 +11,7 @@
 </script>
 
 <!-- Year Dropdown Trigger -->
-<a class='dropdown-trigger btn red' href='#' data-target='yearDropdown'>Stats Year</a>
+<a class='dropdown-trigger btn' href='#' data-target='yearDropdown'>Stats Year</a>
 
 <!-- Year Dropdown Structure -->
 <ul id='yearDropdown' class='dropdown-content'>
@@ -24,22 +24,122 @@
 
 
 <h4>Pitching Leaders for {{ year }}</h4>
-<table>
-    <tr>
-        <th>ERA</th>
-        <th>Player</th>
-        <th>Team</th>
-    </tr>
+<div class="row">
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <h5>ERA</h5>
+                <table>
+                    <tr>
+                        <th>ERA</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+                    
+                    {% for leader in eraLeaders.queryResults.row %}
+                    
+                    <tr>
+                        <td>{{ leader.era }}</td>
+                        <td>
+                            <a href='{% url "pitcherStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div>
     
-    {% for leader in eraLeaders.queryResults.row %}
-    
-    <tr>
-        <td>{{ leader.era }}</td>
-        <td>{{ leader.name_display_first_last }}</td>
-        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
-    </tr>
-    
-    {% endfor %}
-</table>
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <h5>Strikeouts</h5>
+                <table>
+                    <tr>
+                        <th>SO</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+                    
+                    {% for leader in soLeaders.queryResults.row %}
+                    
+                    <tr>
+                        <td>{{ leader.so }}</td>
+                        <td>
+                            <a href='{% url "pitcherStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div> 
+
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <h5>Wins</h5>
+                <table>
+                    <tr>
+                        <th>Wins</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+                    
+                    {% for leader in wLeaders.queryResults.row %}
+                    
+                    <tr>
+                        <td>{{ leader.w }}</td>
+                        <td>
+                            <a href='{% url "pitcherStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div> 
+
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <h5>Saves</h5>
+                <table>
+                    <tr>
+                        <th>Saves</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+                    
+                    {% for leader in svLeaders.queryResults.row %}
+                    
+                    <tr>
+                        <td>{{ leader.sv }}</td>
+                        <td>
+                            <a href='{% url "pitcherStats" leader.player_id %}'>
+                                <p>{{ leader.name_display_first_last }}</p>
+                            </a>
+                        </td>
+                        <td><img alt="{{ leader.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ leader.team_abbrev }}.png"></td>
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+            </div> 
+        </div> 
+    </div>  
+</div>
     
 {% endblock %}
