@@ -78,6 +78,7 @@ def roster(request, team_id):
     })
 #user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
 
+@login_required
 def playerStats(request, player_id):
     playerData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
     hittingResults = playerData.json()
@@ -99,6 +100,7 @@ def playerStats(request, player_id):
             'playerDetails': infoResults['row']
         })
 
+@login_required
 def pitcherStats(request, player_id):
     pitcherData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))
     pitchingResults = pitcherData.json()
@@ -120,23 +122,60 @@ def pitcherStats(request, player_id):
             'playerDetails': infoResults['row']
         })
 
+@login_required
 def battingLeaders(request, year):
-    bLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=10&game_type=%27R%27&season='{}'&sort_column=%27hr%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
-    bLeaderResults = bLeaderData.json()
-    hitting_repeater = bLeaderResults['leader_hitting_repeater']
+    hrLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=5&game_type=%27R%27&season='{}'&sort_column=%27hr%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
+    hrLeaderResults = hrLeaderData.json()
+    hrHitting_repeater = hrLeaderResults['leader_hitting_repeater']
+
+    rbiLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=5&game_type=%27R%27&season='{}'&sort_column=%27rbi%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
+    rbiLeaderResults = rbiLeaderData.json()
+    rbiHitting_repeater = rbiLeaderResults['leader_hitting_repeater']
+
+    avgLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=5&game_type=%27R%27&season='{}'&sort_column=%27avg%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
+    avgLeaderResults = avgLeaderData.json()
+    avgHitting_repeater = avgLeaderResults['leader_hitting_repeater']
+
+    hitsLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=5&game_type=%27R%27&season='{}'&sort_column=%27h%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
+    hitsLeaderResults = hitsLeaderData.json()
+    hitsHitting_repeater = hitsLeaderResults['leader_hitting_repeater']
+
+    sbLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_hitting_repeater.bam?sport_code=%27mlb%27&results=5&game_type=%27R%27&season='{}'&sort_column=%27sb%27&leader_hitting_repeater.col_in=name_display_first_last,hr,team_abbrev,avg,rbi,h,sb,player_id".format(year))
+    sbLeaderResults = sbLeaderData.json()
+    sbHitting_repeater = sbLeaderResults['leader_hitting_repeater']
 
     return render(request, 'players/battingLeaders.html', {
-        'bLeaders': hitting_repeater['leader_hitting_mux'],
+        'hrLeaders': hrHitting_repeater['leader_hitting_mux'],
+        'rbiLeaders': rbiHitting_repeater['leader_hitting_mux'],
+        'avgLeaders': avgHitting_repeater['leader_hitting_mux'],
+        'hitsLeaders': hitsHitting_repeater['leader_hitting_mux'],
+        'sbLeaders': sbHitting_repeater['leader_hitting_mux'],
         'year':year
     })
 
+@login_required
 def pitchingLeaders(request, year):
-    pLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='era'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev".format(year))
-    pLeaderResults = pLeaderData.json()
-    pitching_repeater = pLeaderResults['leader_pitching_repeater']
+    eraLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='era'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev,player_id,so,w,sv".format(year))
+    eraLeaderResults = eraLeaderData.json()
+    eraPitching_repeater = eraLeaderResults['leader_pitching_repeater']
+
+    soLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='so'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev,player_id,so,w,sv".format(year))
+    soLeaderResults = soLeaderData.json()
+    soPitching_repeater = soLeaderResults['leader_pitching_repeater']
+
+    wLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='w'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev,player_id,so,w,sv".format(year))
+    wLeaderResults =wLeaderData.json()
+    wPitching_repeater = wLeaderResults['leader_pitching_repeater']
+
+    svLeaderData = requests.get("http://lookup-service-prod.mlb.com/json/named.leader_pitching_repeater.bam?sport_code='mlb'&results=10&game_type='R'&season='{}'&sort_column='sv'&leader_pitching_repeater.col_in=name_display_first_last,era,team_abbrev,player_id,so,w,sv".format(year))
+    svLeaderResults = svLeaderData.json()
+    svPitching_repeater = svLeaderResults['leader_pitching_repeater']
 
     return render(request, 'players/pitchingLeaders.html', {
-        'eraLeaders': pitching_repeater['leader_pitching_mux'],
+        'eraLeaders': eraPitching_repeater['leader_pitching_mux'],
+        'soLeaders': soPitching_repeater['leader_pitching_mux'],
+        'wLeaders': wPitching_repeater['leader_pitching_mux'],
+        'svLeaders': svPitching_repeater['leader_pitching_mux'],
         'year':year
     })
 
