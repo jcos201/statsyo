@@ -67,13 +67,16 @@ def roster(request, team_id):
     roster = teamRoster['roster_40']
     rosterResults = roster['queryResults']
     row = rosterResults['row']
+    user = request.user
+    favs = user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
     
     return render(request, 'teams/detail.html', {
         'players': rosterResults['row'],
         'team': row[0]['team_name'],
-        'team_logo': row[0]['team_abbrev']
+        'team_logo': row[0]['team_abbrev'],
+        'fav_players': favs
     })
-
+#user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
 
 def playerStats(request, player_id):
     playerData = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2020'&player_id='{}'".format(player_id))

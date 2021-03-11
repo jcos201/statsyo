@@ -24,9 +24,12 @@
                         {{ player.name_display_first_last }}
                     </a>
                     <span class="right">
+                        {% if not player.player_id in fav_players %}
+                        
                         <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
                             <i class="small material-icons" id="person_add">person_add</i>
                         </a>
+                        {% endif %}
                     </span>
                 </div>
                 {% endif %}
@@ -47,9 +50,11 @@
                             {{ player.position_txt }}
                         </a>
                         <span class="right">
+                            {% if not player.player_id in fav_players %}
                             <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
                                 <i class="small material-icons" id="person_add">person_add</i>
                             </a>
+                            {% endif %}
                         </span>
                     </div>
                     {% endif %}
