@@ -3,32 +3,61 @@
 
 {% block content %}
 
-<h4>Favorite List Detail</h4>
+<h4>{{object.name}} Detail</h4>
 
-<div class="col s12">
-    <div class="card">
-        <div class="card-content">
-            {{ object.name }}
-           <!-- {{ object.fav_player_set.all }}-->
-            {% if object.fav_player_set.all.count %}
+<div class="row">
+    <div class="col s6">
+        <!-- PITCHERS -->
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Pitchers</span>
                 {% for player in object.fav_player_set.all %}
+                {% if player.pos == "P" %}
                 <div class="card">
                     <div class="card-content">
-
+                        <a href='{% url "pitcherStats" player.player_id %}'>
                         {{ player.name }}
-                        {{ player.pos }}
-                        <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
-                        {{ player.team }}
+                        </a>
+                        <span class="right">
+                            <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
+                        </span> 
                     </div>
                     <div class="card-action">
-                        <a href="">Delete</a>
-
+                        <a href="{% url 'favplayer_delete' player.id %}">Delete</a>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
-            {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- HITTERS -->
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Hitters</span>
+                {% for player in object.fav_player_set.all %}
+                {% if player.pos != "P" %}
+                <div class="card">
+                    <div class="card-content">
+                        <a href='{% url "playerStats" player.player_id %}'>
+                            {{ player.name }}
+                            {{ player.pos }}
+                        </a>
+                        <span class="right">
+                            <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
+                        </span> 
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'favplayer_delete' player.id %}">Delete</a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}

@@ -13,6 +13,8 @@ urlpatterns = [
     path('favlist/<int:pk>/', views.ListDetail.as_view(), name='favlist_detail'),
     path('fav_lists/', views.favlist_List, name='favlist_index'),
     path('fav_lists/<int:list_id>/add_player/<int:player_id>/', views.add_player, name='add_player'),
+    # Favorited Players Paths
+    path('favplayer/<int:pk>/delete/', views.FavPlayerDelete.as_view(), name='favplayer_delete'),
     # Individual Player Paths
     path('players/<int:player_id>/', views.playerStats, name='playerStats'),
     path('players/pitchers/<int:player_id>/', views.pitcherStats, name='pitcherStats'),

@@ -159,6 +159,11 @@ class ListDelete(LoginRequiredMixin, DeleteView):
 class ListDetail(LoginRequiredMixin, DetailView):
     model = Fav_List
 
+class FavPlayerDelete(LoginRequiredMixin, DeleteView):
+    model = Fav_Player
+    
+    success_url = '/fav_lists/'
+
 @login_required
 def favlist_List(request):
     lists = Fav_List.objects.filter(user=request.user)

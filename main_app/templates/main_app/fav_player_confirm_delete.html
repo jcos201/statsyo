@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>Delete Player From Favorites</h4>
+<hr/>
+<h5>Are you sure you want to delete <span class="teal-text">{{ object.name }}</span>?</h5>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes - Delete!" class="btn">
+    <a href="{% url 'favlist_detail' object.fav_list.id %}">Cancel</a>
+</form>
+
+<p>{{object.id}}</p>
+
+{% endblock%}
