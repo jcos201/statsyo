@@ -3,67 +3,162 @@
 
 {% block content %}
 
+<br>
 <h4>Player Stats for {{ playerDetails.name_display_first_last }}</h4>
 {% if pitcherStats.team_abbrev %}
-<table>
-    <tr>
-        <th>Team</th>
-        <th>W</th>
-        <th>L</th>
-        <th>ERA</th>
-        <th>G</th>
-        <th>GS</th>
-        <th>CG</th>
-        <th>SHO</th>
-        <th>SV</th>
-        <th>SO</th>
-    </tr>
-    <tr>
-        <td><img alt="{{ pitcherStats.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ pitcherStats.team_abbrev }}.png"></td>
-        <td>{{ pitcherStats.w }}</td>
-        <td>{{ pitcherStats.l }}</td>
-        <td>{{ pitcherStats.era }}</td>
-        <td>{{ pitcherStats.g }}</td>
-        <td>{{ pitcherStats.gs }}</td>
-        <td>{{ pitcherStats.cg }}</td>
-        <td>{{ pitcherStats.sho }}</td>
-        <td>{{ pitcherStats.sv }}</td>
-        <td>{{ pitcherStats.svo }}</td>
-    </tr>
-</table>
-
-<table>
-        
-    <tr>
-        <th>IP</th>
-        <th>H</th>
-        <th>R</th>
-        <th>ER</th>
-        <th>HR</th>
-        <th>HB</th>
-        <th>BB</th>
-        <th>SO</th>
-        <th>WHIP</th>
-        <th>AVG</th>
-        
-    </tr>
-    <tr>
-        <td>{{ pitcherStats.ip }}</td>
-        <td>{{ pitcherStats.h }}</td>
-        <td>{{ pitcherStats.r }}</td>
-        <td>{{ pitcherStats.er }}</td>
-        <td>{{ pitcherStats.hr }}</td>
-        <td>{{ pitcherStats.hb }}</td>
-        <td>{{ pitcherStats.bb }}</td>
-        <td>{{ pitcherStats.so }}</td>
-        <td>{{ pitcherStats.whip }}</td>
-        <td>{{ pitcherStats.avg }}</td>
-    </tr>
-
-</table>
+<br>
+<br>
+<br>
+<div class="table-responsive">
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>W</th>
+                <th>L</th>
+                <th>ERA</th>
+                <th>G</th>
+                <th>GS</th>
+                <th>CG</th>
+                <th>SHO</th>
+                <th>SV</th>
+                <th>SO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li><img alt="{{ pitcherStats.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ pitcherStats.team_abbrev }}.png"></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.w }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.l }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.era }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.g }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.gs }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.cg }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.sho }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.sv }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.svo }}</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>H</th>
+                <th>R</th>
+                <th>ER</th>
+                <th>HR</th>
+                <th>HB</th>
+                <th>BB</th>
+                <th>SO</th>
+                <th>WHIP</th>
+                <th>AVG</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.ip }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.h }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.r }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.er }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.hr }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.hb }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.bb }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.so }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.whip }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ pitcherStats.avg }}</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 {% else %}
 <h4>No Data for Rookie</h4>
 
 {% endif %}
 
+</div>
+
 {% endblock %}
+
