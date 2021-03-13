@@ -22,8 +22,9 @@
                             <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
                         </span> 
                     </div>
+                    <br>
                     <div class="card-action">
-                        <a href="{% url 'favplayer_delete' player.id %}">Delete</a>
+                        <a href="{% url 'favplayer_delete' player.id %}" class="red-text">Delete</a>
                     </div>
                 </div>
                 {% endif %}
@@ -48,8 +49,9 @@
                             <img alt="{{ player.team }}" class="logo" src="{% get_static_prefix %}/images/{{ player.team }}.png"> 
                         </span> 
                     </div>
+                    <br>
                     <div class="card-action">
-                        <a href="{% url 'favplayer_delete' player.id %}">Delete</a>
+                        <a href="{% url 'favplayer_delete' player.id %}" class="red-text">Delete</a>
                     </div>
                 </div>
                 {% endif %}

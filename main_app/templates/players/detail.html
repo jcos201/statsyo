@@ -9,12 +9,15 @@
 <!-- ADD PLAYER TO FAVORITES LIST -->
 <!-- STRETCH GOAL: HEART ICON TO ADD/REMOVE PLAYER FROM LIST-->
     <!-- COULD BE THAT CLICKING ON ICON REFRESHES PAGE TO ADD/REMOVE FROM LIST -->
-
+<br>
 <h4>Player Stats for {{ playerDetails.name_display_first_last }}</h4>
 {% if stats.team_abbrev %}
-<div class="row">
-    <div class="col s8" id="batter-stats">
-        <table> 
+<br>
+<br>
+<br>
+<div class="table-responsive">
+    <table class="striped">
+        <thead>
             <tr>
                 <th>Team</th>
                 <th>Games</th>
@@ -25,23 +28,57 @@
                 <th>HR</th>
                 <th>RBI</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
-                <td><img alt="{{ stats.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ stats.team_abbrev }}.png"></td>
-                <td>{{ stats.g }}</td>
-                <td>{{ stats.ab }}</td>
-                <td>{{ stats.r }}</td>
-                <td>{{ stats.h }}</td>
-                <td>{{ stats.xbh }}</td>
-                <td>{{ stats.hr }}</td>
-                <td>{{ stats.rbi }}</td>
+                <td>
+                    <ul>
+                        <li><img alt="{{ stats.team_abbrev }}" class="logo" src="{% get_static_prefix %}/images/{{ stats.team_abbrev }}.png"></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.g }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.ab }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.r }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.h }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.xbh }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.hr }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.rbi }}</li>
+                    </ul>
+                </td>
             </tr>
-        </table>
-    </div>
-
-
-    <div class="col s8" id="batter-stats">
-        <table> 
-        
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table class="striped">
+        <thead>
             <tr>
                 <th>BB</th>
                 <th>SO</th>
@@ -52,19 +89,52 @@
                 <th>SLG</th>
                 <th>OPS</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
-                <td>{{ stats.bb }}</td>
-                <td>{{ stats.so }}</td>
-                <td>{{ stats.sb }}</td>
-                <td>{{ stats.cs }}</td>
-                <td>{{ stats.avg }}</td>
-                <td>{{ stats.obp }}</td>
-                <td>{{ stats.slg }}</td>
-                <td>{{ stats.ops }}</td>
+                <td>
+                    <ul>
+                        <li>{{ stats.bb }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.so }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.sb }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.cs }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.avg }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.obp }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.slg }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>{{ stats.ops }}</li>
+                    </ul>
+                </td>
             </tr>
-
-        </table>
-    </div>
+        </tbody>
+    </table>
 {% else %}
 <h4>No Data for Rookie</h4>
 
