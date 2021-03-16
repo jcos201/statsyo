@@ -23,13 +23,19 @@
                     <a href='{% url "pitcherStats" player.player_id %}'>
                         {{ player.name_display_first_last }}
                     </a>
-                    {% if not user.is_anonymous and user.fav_list_set.count %}
+                    {% if not user.is_anonymous %}
+                    <!-- <a href="{% url 'favlist_create' %}">Add A Favorite Lists</a> -->      
                     <span class="right">
-                        {% if not player.player_id in fav_players %}
-                        
-                        <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
-                            <i class="small material-icons" id="person_add">person_add</i>
-                        </a>
+                        {% if user.fav_list_set.count %}                  
+                            {% if not player.player_id in fav_players %}
+                            <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
+                                <i class="small material-icons" id="person_add">person_add</i>
+                            </a>
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'favlist_create' %}">
+                                <i class="small material-icons" id="person_add">person_add</i>
+                            </a>
                         {% endif %}
                     </span>
                     {% endif %}
@@ -51,13 +57,19 @@
                             {{ player.name_display_first_last }}
                             {{ player.position_txt }}
                         </a>
-                        {% if not user.is_anonymous and user.fav_list_set.count %}
+                        {% if not user.is_anonymous  %}
                             <span class="right">
+                            {% if user.fav_list_set.count %}
                                     {% if not player.player_id in fav_players %}
                                     <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
                                         <i class="small material-icons" id="person_add">person_add</i>
                                     </a>
                                     {% endif %}
+                            {% else %}
+                                    <a href="{% url 'favlist_create' %}">
+                                        <i class="small material-icons" id="person_add">person_add</i>
+                                    </a>
+                            {% endif %}
                             </span>
                         {% endif %}
                     </div>
@@ -66,6 +78,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 
