@@ -60,7 +60,7 @@ def teams_index(request):
         
     })
 
-@login_required
+
 def roster(request, team_id):
     rosterData = requests.get("http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='{}'".format(team_id))
     teamRoster = rosterData.json()
@@ -68,7 +68,11 @@ def roster(request, team_id):
     rosterResults = roster['queryResults']
     row = rosterResults['row']
     user = request.user
-    favs = user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
+    print()
+    if not user.is_anonymous:
+        favs = user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
+    else:
+        favs = ""
     
     return render(request, 'teams/detail.html', {
         'players': rosterResults['row'],
