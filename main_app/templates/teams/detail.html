@@ -23,7 +23,7 @@
                     <a href='{% url "pitcherStats" player.player_id %}'>
                         {{ player.name_display_first_last }}
                     </a>
-                    {% if not user.is_anonymous %}
+                    {% if not user.is_anonymous and user.fav_list_set.count %}
                     <span class="right">
                         {% if not player.player_id in fav_players %}
                         
@@ -51,7 +51,7 @@
                             {{ player.name_display_first_last }}
                             {{ player.position_txt }}
                         </a>
-                        {% if not user.is_anonymous %}
+                        {% if not user.is_anonymous and user.fav_list_set.count %}
                             <span class="right">
                                     {% if not player.player_id in fav_players %}
                                     <a href="{% url 'add_player' user.fav_list_set.first.id player.player_id  %}">
