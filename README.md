@@ -33,4 +33,8 @@ Technologies Used: MLB Stats API, Python, Heroku, Postgres, Django, GitHub, Mate
 Next Steps: 
 1) More statistics at the team level and functionality to favorite a team.
 2) Adding more specific years for player stats.
+<<<<<<< HEAD
 3) Styling the app for mobile use.
+=======
+3) Styling the app for mobile use.
+>>>>>>> fb50c49067c922d14f8dcbb26d4511824b13aa90
