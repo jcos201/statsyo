@@ -2,7 +2,11 @@
 Stats Yo!
 </h1>
 
-We are a group of developers who want to combine our interests of statistics with baseball.
+
+![LOGO](./main_app/static/images/statsyoAltLogo.png)
+
+
+We are a group of developers who combined our interests in statistics with baseball.
 
 Stats Yo! is an application intended to provide quick and easy access to baseball statistics across all 30 Major League Baseball teams.
 
