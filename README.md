@@ -16,16 +16,16 @@ Trello Board:
 https://trello.com/b/Xp9cqutn/stats-yo
 
 ERD:
-![ERD](/statsyo/main_app/static/images/ERD.png)
+![ERD](./main_app/static/images/ERD.png)
 
 Wireframes:
-![Wireframe1](/statsyo/main_app/static/images/landingPage.png)
-![Wireframe2](/statsyo/main_app/static/images/secondPage.png)
-![Wireframe3](/statsyo/main_app/static/images/thirdPage.png)
-![Wireframe4](/statsyo/main_app/static/images/fourthPage.png)
+![Wireframe1](./main_app/static/images/landingPage.png)
+![Wireframe2](./main_app/static/images/secondPage.png)
+![Wireframe3](./main_app/static/images/thirdPage.png)
+![Wireframe4](./main_app/static/images/fourthPage.png)
 
 Screenshots:
-![Application](/statsyo/main_app/static/images/appScreenshot.png)
+![Application](./main_app/static/images/appScreenshot.png)
 
 
 Technologies Used: MLB Stats API, Python, Heroku, Postgres, Django, GitHub, Materialize, HTML, Javascript, CSS.
