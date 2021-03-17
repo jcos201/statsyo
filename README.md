@@ -15,14 +15,16 @@ https://statsyo.herokuapp.com/
 Trello Board:
 https://trello.com/b/Xp9cqutn/stats-yo
 
-ERD:
+
 ![ERD](./main_app/static/images/ERD.png)
+
 
 Wireframes:
 ![Wireframe1](./main_app/static/images/landingPage.png)
 ![Wireframe2](./main_app/static/images/secondPage.png)
 ![Wireframe3](./main_app/static/images/thirdPage.png)
 ![Wireframe4](./main_app/static/images/fourthPage.png)
+
 
 Screenshots:
 ![Application](./main_app/static/images/appScreenshot.png)
