@@ -69,7 +69,7 @@ def roster(request, team_id):
     row = rosterResults['row']
     user = request.user
     print()
-    if not user.is_anonymous:
+    if not user.is_anonymous and user.fav_list_set.all().count() > 0:
         favs = user.fav_list_set.first().fav_player_set.all().values_list('player_id', flat=True)
     else:
         favs = ""

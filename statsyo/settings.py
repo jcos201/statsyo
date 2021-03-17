@@ -132,3 +132,6 @@ LOGOUT_REDIRECT_URL = '/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "main_app/static/"),
 )
+
+import django_heroku
+django_heroku.settings(locals())
